@@ -33,7 +33,19 @@ Construir as seguintes consultas:
 
 - Listar todos Clientes que não tenham realizado uma compra;
 - Listar os Produtos que não tenham sido comprados
+- 
 - Listar os Produtos sem Estoque;
+- SELECT
+    t1.product_id,
+    t1.product_name,
+    t2.quantity     
+FROM
+    products AS t1, stocks AS t2
+INNER JOIN
+    stocks AS t2 ON t1.product_id = t2.product_id 
+AND
+    t2.quantity = 0;
+  
 - Agrupar a quantidade de vendas que uma determinada Marca por Loja. 
 - Listar os Funcionarios que não estejam relacionados a um Pedido.
 
