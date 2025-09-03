@@ -1,2 +1,2 @@
 Cliente
-select * from customer.id where 
+select * from customer_id where 
