@@ -32,6 +32,17 @@ Para entender o modelo, revisar o diagrama a seguir:
 Construir as seguintes consultas:
 
 - Listar todos Clientes que não tenham realizado uma compra;
+SELECT
+    c.*
+FROM
+    customer c
+LEFT JOIN
+    orders o ON c.customer_id = o.customer_id
+LEFT JOIN
+    store s ON o.store_id = s.store_id
+WHERE
+    o.order_id IS NULL;
+  
 - Listar os Produtos que não tenham sido comprados
 - 
 - Listar os Produtos sem Estoque;
