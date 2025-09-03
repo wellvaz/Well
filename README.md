@@ -42,11 +42,22 @@ LEFT JOIN
     store s ON o.store_id = s.store_id
 WHERE
     o.order_id IS NULL;
+
   
 - Listar os Produtos que não tenham sido comprados
-- 
+SELECT p.product_id, p.product_name
+FROM products p
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM sales s
+    WHERE s.product_id = p.product_id
+)
+AND p.stock_id IS NOT NULL 	
+AND p.store_id IS NOT NULL;
+
+
 - Listar os Produtos sem Estoque;
-- SELECT
+SELECT
     t1.product_id,
     t1.product_name,
     t2.quantity     
