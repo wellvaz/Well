@@ -31,43 +31,8 @@ Para entender o modelo, revisar o diagrama a seguir:
 
 Construir as seguintes consultas:
 
-- Listar todos Clientes que não tenham realizado uma compra;
-SELECT
-    c.*
-FROM
-    customer c
-LEFT JOIN
-    orders o ON c.customer_id = o.customer_id
-LEFT JOIN
-    store s ON o.store_id = s.store_id
-WHERE
-    o.order_id IS NULL;
-
-  
 - Listar os Produtos que não tenham sido comprados
-SELECT p.product_id, p.product_name
-FROM products p
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM sales s
-    WHERE s.product_id = p.product_id
-)
-AND p.stock_id IS NOT NULL 	
-AND p.store_id IS NOT NULL;
-
-
 - Listar os Produtos sem Estoque;
-SELECT
-    t1.product_id,
-    t1.product_name,
-    t2.quantity     
-FROM
-    products AS t1, stocks AS t2
-INNER JOIN
-    stocks AS t2 ON t1.product_id = t2.product_id 
-AND
-    t2.quantity = 0;
-  
 - Agrupar a quantidade de vendas que uma determinada Marca por Loja. 
 - Listar os Funcionarios que não estejam relacionados a um Pedido.
 
